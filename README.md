@@ -22,7 +22,7 @@ func LongMul(a, b string) string { ... }
   "2194787380219478738021947873802194787380219478737978052126197805212619780521261978052126197805212620"},
 ```
 
-## Extra Task: Long Addition Base N (+30%)
+## Extra Task: Long Multiplication Base N (+30%)
 
 Write a program (with tests) that implements "long" arithmetics multiplication in arbitrary numeral system.
 The program may contain a `LongMul` function, which accepts two numbers encoded as strings and the base.

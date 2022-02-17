@@ -39,3 +39,16 @@ func LongMul(a, b string, base int) string { ... }
   "22222222222222222222222222222222222222222222222222",
   16,
   "14540b39e014540b39e014540b39e014540b39e014540b39dfebabf4c61febabf4c61febabf4c61febabf4c61febabf4c620"},
+```
+
+## Extra Task: Benchmarks (+50%)
+
+Note: This is extra 50% due to the fact that we require different implementations and conclusions. This may
+be not so trivial.
+
+* Read about benchmarks (e.g. https://dave.cheney.net/2013/06/30/how-to-write-benchmarks-in-go).
+* Implement benchmarks for your programs.
+* Try to optimize your program.
+* Try to make any meaningful conclusions.
+* Have fun!
+

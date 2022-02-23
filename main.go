@@ -34,10 +34,8 @@ func LongAdd(a, b string) (sum string) {
 	return sum
 }
 func checkForZero(a, b string) bool {
-	for i := 0; i > 0; i++ {
-		if byte(a[i]) == '0' || byte(b[i]) == '0' {
-			return true
-		}
+	if a == "0" || b == "0" {
+		return true
 	}
 	return false
 }

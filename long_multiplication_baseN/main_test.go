@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -17,7 +18,8 @@ func TestLongMul(t *testing.T) {
 		{"0", "0", 16, "0"},
 		{"1", "0", 3, "0"},
 		{"0", "1", 21, "0"},
-		{"1", "1", 6, "2"},
+		{"1", "1", 5, "1"},
+		{"1", "2", 6, "2"},
 		{"6", "6", 7, "36"},
 		{"6", "6", 6, "-1"},
 		{"6", "6", 37, "-1"},
@@ -38,15 +40,24 @@ func TestLongMul(t *testing.T) {
 	}
 }
 
-func benchmarkLongMul(a, c string, base int, b *testing.B) {
+var (
+	benchA    = strings.Repeat("1", 10000)
+	benchB    = strings.Repeat("9", 1)
+	benchBase = 10
+
+	// benchA    = strings.Repeat("5", 10000)
+	// benchB    = strings.Repeat("17", 2)
+	// benchBase = 4
+
+	// benchA = strings.Repeat("1234567890", 10000)
+	// benchB = strings.Repeat("99999", 100000)
+	// benchBase = 28
+)
+
+func BenchmarkLongSum(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		LongMul(a, c, base)
+		_ = LongMul(benchA, benchB, benchBase)
 	}
 }
 
-func BenchmarkLongMul1(b *testing.B) { benchmarkLongMul("1", "1", 2, b) }
-func BenchmarkLongMul2(b *testing.B) { benchmarkLongMul("3", "3", 4, b) }
-func BenchmarkLongMul3(b *testing.B) { benchmarkLongMul("9", "9", 10, b) }
-func BenchmarkLongMul4(b *testing.B) { benchmarkLongMul("123", "9", 10, b) }
-
-// Conclusion: the higher the numbers, the more time the program needs to complete the task.
+// Conclusion: The higher the numbers, the more ns, B and allocs the program needs to complete the task, increasing the base doesn't really affect anything, but decreasing it helps the program complete the task in less ns, B and allocs.

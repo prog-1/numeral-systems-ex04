@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -43,15 +44,21 @@ func TestLongMul(t *testing.T) {
 	}
 }
 
-func benchmarkLongMul(a, c string, b *testing.B) {
+var (
+	benchA = strings.Repeat("1", 10000)
+	benchB = strings.Repeat("9", 1)
+
+	// benchA    = strings.Repeat("5", 10000)
+	// benchB    = strings.Repeat("17", 2)
+
+	// benchA = strings.Repeat("1234567890", 10000)
+	// benchB = strings.Repeat("99999", 100000)
+)
+
+func BenchmarkLongSum(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		LongMul(a, c)
+		_ = LongMul(benchA, benchB)
 	}
 }
 
-func BenchmarkLongMul1(b *testing.B) { benchmarkLongMul("1", "1", b) }
-func BenchmarkLongMul2(b *testing.B) { benchmarkLongMul("3", "3", b) }
-func BenchmarkLongMul3(b *testing.B) { benchmarkLongMul("9", "9", b) }
-func BenchmarkLongMul4(b *testing.B) { benchmarkLongMul("123", "9", b) }
-
-// Conclusion: the higher the numbers, the more time the program needs to complete the task.
+// Conclusion: The higher the numbers, the more ns, B and allocs the program needs to complete the task.
